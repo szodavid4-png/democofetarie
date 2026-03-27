@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Doux | Patiserie Artizanală</title>
+  <style>
+    :root {
+      --cream: #fff9f3;
+      --vanilla: #f6eadf;
+      --rose: #eac7c2;
+      --caramel: #b57b55;
+      --chocolate: #4d3427;
+      --gold: #d6aa73;
+      --text: #3f2d23;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(77, 52, 39, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: rgba(255, 249, 243, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(181, 123, 85, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px 0;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: var(--chocolate);
+    }
+
+    .logo span {
+      color: var(--caramel);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      font-size: 1rem;
+    }
+
+    .nav-links a {
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background: var(--caramel);
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 24px;
+      border-radius: 999px;
+      background: var(--caramel);
+      color: var(--white);
+      font-size: 0.95rem;
+      transition: 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--caramel);
+      border-color: var(--caramel);
+    }
+
+    .hero {
+      padding: 70px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-text small {
+      display: inline-block;
+      padding: 8px 14px;
+      background: var(--vanilla);
+      border-radius: 999px;
+      color: var(--caramel);
+      margin-bottom: 18px;
+      letter-spacing: 0.4px;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 1.06;
+      margin-bottom: 20px;
+      color: var(--chocolate);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--caramel);
+      color: var(--caramel);
+    }
+
+    .btn-outline:hover {
+      background: var(--caramel);
+      color: var(--white);
+    }
+
+    .hero-card {
+      background: linear-gradient(160deg, #f3dfd5, #fffaf6);
+      border-radius: 36px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.45);
+    }
+
+    .hero-card::before {
+      width: 180px;
+      height: 180px;
+      top: -30px;
+      right: -30px;
+    }
+
+    .hero-card::after {
+      width: 110px;
+      height: 110px;
+      left: -20px;
+      bottom: 120px;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 24px 24px 120px 24px;
+      border-radius: 28px;
+      background:
+        linear-gradient(rgba(77,52,39,0.08), rgba(77,52,39,0.08)),
+        url('https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow: inset 0 -40px 70px rgba(0,0,0,0.08);
+    }
+
+    .hero-badge {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.84);
+      border-radius: 22px;
+      padding: 18px 20px;
+      width: fit-content;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+
+    .hero-badge strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--chocolate);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .section-head h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--chocolate);
+      margin-bottom: 8px;
+    }
+
+    .section-head p {
+      max-width: 620px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card-image {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 22px;
+    }
+
+    .card-body h3 {
+      color: var(--chocolate);
+      font-size: 1.35rem;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: var(--caramel);
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin: 12px 0 16px;
+    }
+
+    .story {
+      background: linear-gradient(180deg, #fff7ef 0%, #f7ece3 100%);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .story-photo {
+      height: 520px;
+      border-radius: 34px;
+      background:
+        linear-gradient(rgba(77,52,39,0.10), rgba(77,52,39,0.10)),
+        url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1200&q=80') center/cover;
+      box-shadow: var(--shadow);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.75);
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(181,123,85,0.12);
+    }
+
+    .feature h4 {
+      margin-bottom: 8px;
+      color: var(--chocolate);
+    }
+
+    .specials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .special-box {
+      padding: 30px;
+      border-radius: 28px;
+      color: var(--white);
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      box-shadow: var(--shadow);
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .special-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.55));
+    }
+
+    .special-box * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonials-wrap {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(181,123,85,0.12);
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 14px;
+      color: var(--chocolate);
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, var(--chocolate), #6b4834);
+      color: var(--white);
+      padding: 44px;
+      border-radius: 34px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 16px;
+    }
+
+    .contact-list p {
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 16px;
+      padding: 15px 16px;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      text-align: center;
+      color: #7a6254;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1100px) {
+      .products,
+      .specials-grid,
+      .testimonials-wrap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-grid,
+      .story-grid,
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: 460px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-direction: column;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .products,
+      .specials-grid,
+      .testimonials-wrap,
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-card {
+        min-height: 390px;
+      }
+
+      .hero-photo {
+        inset: 20px 20px 110px 20px;
+      }
+
+      .contact-box {
+        padding: 28px;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="logo">Maison <span>Doux</span></a>
+      <nav class="nav-links">
+        <a href="#home">Acasă</a>
+        <a href="#produse">Produse</a>
+        <a href="#poveste">Povestea noastră</a>
+        <a href="#special">Colecții</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn">Comandă acum</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <small>Patiserie artizanală • gust fin • ingrediente alese</small>
+          <h1>Deserturi elegante, coapte cu grijă și imaginație.</h1>
+          <p>
+            Maison Doux este un site de prezentare pentru o patiserie modernă,
+            cu aer premium, ton cald și atmosferă delicată. Am păstrat ideea de
+            rafinament și prezentare editorială, dar cu un design original,
+            mai aerisit și mai romantic.
+          </p>
+          <div class="hero-actions">
+            <a href="#produse" class="btn">Vezi meniul</a>
+            <a href="#poveste" class="btn btn-outline">Descoperă atelierul</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-photo"></div>
+          <div class="hero-badge">
+            <strong>Specialitatea casei</strong>
+            <span>Tarte fine, eclere și mini torturi cu decor elegant</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="produse">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Selecția casei</h2>
+            <p>O colecție de produse gândite pentru un site de patiserie premium: fotografii mari, carduri elegante și un aspect curat.</p>
+          </div>
+          <a href="#contact" class="btn btn-outline">Rezervă un candy bar</a>
+        </div>
+
+        <div class="products">
+          <article class="card">
+            <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body">
+              <h3>Ecler Royal</h3>
+              <p>Cremă fină de vanilie, glazură lucioasă și decor minimalist.</p>
+              <span class="price">24 lei</span>
+              <div><a href="#contact" class="btn">Comandă</a></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body">
+              <h3>Tartă cu zmeură</h3>
+              <p>Fructe proaspete, cremă delicată și blat crocant cu unt.</p>
+              <span class="price">29 lei</span>
+              <div><a href="#contact" class="btn">Comandă</a></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body">
+              <h3>Mini Tort Velvet</h3>
+              <p>Textură catifelată, cremă aerată și decor floral discret.</p>
+              <span class="price">95 lei</span>
+              <div><a href="#contact" class="btn">Comandă</a></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="card-image" style="background-image:url('https://images.unsplash.com/photo-1509365465985-25d11c17e812?auto=format&fit=crop&w=900&q=80');"></div>
+            <div class="card-body">
+              <h3>Croissant Auriu</h3>
+              <p>Foietaj fraged, unt premium și coacere lentă pentru gust bogat.</p>
+              <span class="price">16 lei</span>
+              <div><a href="#contact" class="btn">Comandă</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="story" id="poveste">
+      <div class="container story-grid">
+        <div class="story-photo"></div>
+        <div>
+          <div class="section-head" style="margin-bottom: 10px;">
+            <div>
+              <h2>Din laborator, direct în vitrină</h2>
+            </div>
+          </div>
+          <p>
+            Conceptul acestui site este inspirat de direcția elegantă a unui brand de cofetărie premium:
+            secțiune hero mare, accent pe poveste, produse vedetă, ingrediente speciale și contact clar.
+            Totuși, identitatea vizuală este diferită: alt nume, altă paletă, altă structură a blocurilor și un stil mai soft.
+          </p>
+
+          <div class="features">
+            <div class="feature">
+              <h4>Ingrediente atent alese</h4>
+              <p>Unt fin, fructe proaspete și arome echilibrate pentru deserturi memorabile.</p>
+            </div>
+            <div class="feature">
+              <h4>Design premium</h4>
+              <p>Perfect pentru un proiect școlar, portofoliu sau prezentare de business.</p>
+            </div>
+            <div class="feature">
+              <h4>Structură clară</h4>
+              <p>Navbar, hero, produse, poveste, colecții, testimoniale și contact.</p>
+            </div>
+            <div class="feature">
+              <h4>Responsive</h4>
+              <p>Site-ul se adaptează și pe telefon, și pe tabletă, și pe desktop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="special">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Colecții de sezon</h2>
+            <p>Blocuri vizuale mari, moderne, pentru a păstra atmosfera sofisticată a unui atelier de dulciuri.</p>
+          </div>
+        </div>
+
+        <div class="specials-grid">
+          <div class="special-box" style="background-image:url('https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80');">
+            <h3>Brunch dulce</h3>
+            <p>Madeleine, croissante și plăcinte fine pentru dimineți elegante.</p>
+          </div>
+
+          <div class="special-box" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=80');">
+            <h3>Torturi festive</h3>
+            <p>Compoziții rafinate pentru aniversări, botezuri și evenimente speciale.</p>
+          </div>
+
+          <div class="special-box" style="background-image:url('https://images.unsplash.com/photo-1519676867240-f03562e64548?auto=format&fit=crop&w=1200&q=80');">
+            <h3>Cadouri dulci</h3>
+            <p>Cutii premium cu mini prăjituri și biscuiți artizanali.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Ce spun clienții</h2>
+            <p>Am adăugat și o secțiune de testimoniale ca site-ul să pară mai complet și mai real.</p>
+          </div>
+        </div>
+
+        <div class="testimonials-wrap">
+          <div class="testimonial">
+            <p>„Un site foarte elegant, iar produsele sunt prezentate exact cum te-ai aștepta de la o patiserie premium.”</p>
+            <strong>— Ana M.</strong>
+          </div>
+          <div class="testimonial">
+            <p>„Îmi place că are același vibe sofisticat, dar nu pare o copie. Se simte original și bine construit.”</p>
+            <strong>— David R.</strong>
+          </div>
+          <div class="testimonial">
+            <p>„Perfect pentru un brand boutique: culori calde, imagini mari și secțiuni aerisite.”</p>
+            <strong>— Cristina P.</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-box">
+          <div>
+            <h2>Hai să vorbim despre comanda ta</h2>
+            <p>
+              Pentru torturi personalizate, candy bar sau comenzi de eveniment,
+              trimite-ne un mesaj și revenim cât mai repede.
+            </p>
+            <div class="contact-list" style="margin-top: 22px;">
+              <p><strong>Adresă:</strong> Str. Florilor 21, București</p>
+              <p><strong>Telefon:</strong> 0712 345 678</p>
+              <p><strong>Email:</strong> contact@maisondoux.ro</p>
+              <p><strong>Program:</strong> Luni - Duminică, 09:00 - 20:00</p>
+            </div>
+          </div>
+
+          <form>
+            <input type="text" placeholder="Numele tău" />
+            <input type="email" placeholder="Adresa ta de email" />
+            <input type="text" placeholder="Ce produs dorești?" />
+            <textarea placeholder="Scrie detaliile comenzii..."></textarea>
+            <button type="submit" class="btn">Trimite mesajul</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Maison Doux • Site demo realizat în HTML + CSS</p>
+    </div>
+  </footer>
+</body>
+</html>
