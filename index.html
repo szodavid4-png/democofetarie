@@ -42,7 +42,6 @@
       overflow-x: hidden;
     }
 
-    /* ─── Decorative background petals ─── */
     body::before {
       content: '';
       position: fixed;
@@ -73,7 +72,6 @@
       z-index: 1;
     }
 
-    /* ─── NAVBAR ─── */
     .topbar {
       position: sticky;
       top: 0; z-index: 1000;
@@ -108,7 +106,6 @@
       font-style: italic;
     }
 
-    /* Floral divider under logo */
     .logo-divider {
       display: block;
       font-family: 'Jost', sans-serif;
@@ -192,7 +189,6 @@
       background: var(--blush);
     }
 
-    /* ─── HERO ─── */
     .hero {
       padding: 80px 0 60px;
     }
@@ -258,7 +254,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Hero visual */
     .hero-visual {
       position: relative;
     }
@@ -284,7 +279,6 @@
       100%{ border-radius: 40% 60% 52% 48% / 58% 42% 52% 48%; }
     }
 
-    /* Floating petal accents */
     .petal-accent {
       position: absolute;
       border-radius: 50%;
@@ -339,7 +333,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* ─── SECTION COMMONS ─── */
     section { padding: 80px 0; }
 
     .section-label {
@@ -384,7 +377,6 @@
       max-width: 540px;
     }
 
-    /* ─── PRODUCTS ─── */
     .products-section { background: var(--ivory); }
 
     .products-header {
@@ -481,7 +473,6 @@
       border-color: var(--rose);
     }
 
-    /* Petal tag on card */
     .card-tag {
       position: absolute;
       top: 16px; left: 16px;
@@ -497,7 +488,6 @@
       z-index: 2;
     }
 
-    /* ─── STORY ─── */
     .story-section {
       background: linear-gradient(160deg, var(--soft-lav) 0%, var(--blush) 100%);
       position: relative;
@@ -606,7 +596,6 @@
       line-height: 1.65;
     }
 
-    /* ─── SPECIALS ─── */
     .specials-section {
       background: var(--cream);
     }
@@ -646,7 +635,6 @@
       );
     }
 
-    /* Floral overlay tint */
     .special-box::after {
       content: '';
       position: absolute;
@@ -688,7 +676,6 @@
       margin-bottom: 10px;
     }
 
-    /* ─── TESTIMONIALS ─── */
     .testimonials-section {
       background: var(--ivory);
     }
@@ -761,7 +748,6 @@
       letter-spacing: 2px;
     }
 
-    /* ─── CONTACT ─── */
     .contact-section { background: var(--cream); }
 
     .contact-box {
@@ -891,7 +877,13 @@
       resize: vertical;
     }
 
-    /* ─── FOOTER ─── */
+    .status-message {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.82);
+      min-height: 24px;
+    }
+
     footer {
       background: var(--ink);
       color: rgba(255,255,255,0.45);
@@ -905,7 +897,6 @@
       color: var(--rose);
     }
 
-    /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -914,7 +905,6 @@
     .hero-text { animation: fadeUp 0.9s ease both; }
     .hero-visual { animation: fadeUp 0.9s 0.2s ease both; }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
       .products-grid,
       .specials-grid,
@@ -942,7 +932,6 @@
 </head>
 <body>
 
-  <!-- ░░ NAVBAR ░░ -->
   <header class="topbar">
     <div class="topbar-inner">
       <div class="container nav">
@@ -963,8 +952,6 @@
   </header>
 
   <main>
-
-    <!-- ░░ HERO ░░ -->
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-text">
@@ -1001,7 +988,6 @@
       </div>
     </section>
 
-    <!-- ░░ PRODUCTS ░░ -->
     <section id="produse" class="products-section">
       <div class="container">
         <div class="products-header">
@@ -1067,7 +1053,6 @@
       </div>
     </section>
 
-    <!-- ░░ STORY ░░ -->
     <section id="poveste" class="story-section">
       <div class="container story-grid">
         <div class="story-photo-wrap">
@@ -1108,7 +1093,6 @@
       </div>
     </section>
 
-    <!-- ░░ SPECIALS ░░ -->
     <section id="special" class="specials-section">
       <div class="container">
         <div class="section-label"><span>Colecții de sezon</span></div>
@@ -1142,7 +1126,6 @@
       </div>
     </section>
 
-    <!-- ░░ TESTIMONIALS ░░ -->
     <section class="testimonials-section">
       <div class="container">
         <div class="section-label"><span>Ce spun clienții</span></div>
@@ -1185,7 +1168,6 @@
       </div>
     </section>
 
-    <!-- ░░ CONTACT ░░ -->
     <section id="contact" class="contact-section">
       <div class="container">
         <div class="contact-box">
@@ -1228,28 +1210,29 @@
 
           <div class="contact-form-wrap">
             <h3>Trimite un mesaj ✦</h3>
-            <form>
+
+            <form id="contactForm">
               <div class="form-group">
-                <input type="text" placeholder="Numele tău" />
+                <input type="text" id="name" name="name" placeholder="Numele tău" required />
               </div>
               <div class="form-group">
-                <input type="email" placeholder="Adresa ta de email" />
+                <input type="email" id="email" name="email" placeholder="Adresa ta de email" required />
               </div>
               <div class="form-group">
-                <input type="text" placeholder="Ce produs dorești?" />
+                <input type="text" id="product" name="product" placeholder="Ce produs dorești?" required />
               </div>
               <div class="form-group">
-                <textarea placeholder="Scrie detaliile comenzii..."></textarea>
+                <textarea id="details" name="details" placeholder="Scrie detaliile comenzii..." required></textarea>
               </div>
-              <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
+              <button id="submitBtn" type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">
                 Trimite mesajul
               </button>
+              <p id="statusMessage" class="status-message"></p>
             </form>
           </div>
         </div>
       </div>
     </section>
-
   </main>
 
   <footer>
@@ -1257,6 +1240,67 @@
       <p>© 2026 Maison <span>Doux</span> &nbsp;·&nbsp; Patiserie artizanală cu suflet</p>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <script>
+    emailjs.init("PUBLIC_KEY_UL_TAU");
+
+    const contactForm = document.getElementById("contactForm");
+    const statusMessage = document.getElementById("statusMessage");
+    const submitBtn = document.getElementById("submitBtn");
+
+    contactForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const product = document.getElementById("product").value.trim();
+      const details = document.getElementById("details").value.trim();
+
+      if (!name || !email || !product || !details) {
+        statusMessage.textContent = "Te rog completează toate câmpurile.";
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Se trimite...";
+      statusMessage.textContent = "Se trimite comanda...";
+
+      const templateParams = {
+        name: name,
+        email: email,
+        product: product,
+        details: details
+      };
+
+      try {
+        await emailjs.send("SERVICE_ID_UL_TAU", "TEMPLATE_ID_UL_TAU", templateParams);
+
+        statusMessage.textContent = "Comanda a fost trimisă pe email.";
+
+        const phoneNumber = "40712345678";
+        const whatsappMessage = `Salut! A fost trimisă o comandă nouă:
+
+Nume: ${name}
+Email: ${email}
+Produs dorit: ${product}
+Detalii comandă: ${details}`;
+
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappURL, "_blank");
+
+        contactForm.reset();
+        submitBtn.textContent = "Trimite mesajul";
+      } catch (error) {
+        console.error("Eroare EmailJS:", error);
+        statusMessage.textContent = "A apărut o eroare la trimitere. Verifică setările EmailJS.";
+        submitBtn.textContent = "Trimite mesajul";
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
 
 </body>
 </html>
